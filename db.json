@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Joni.G",
+      "email": "kos@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 2,
+      "name": "DAvid",
+      "email": "green@gmail.com",
+      "password": "23456789"
+    },
+    {
+      "name": "ASASD",
+      "email": "kos@gmail.co",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "name": "aa",
+      "email": "asd@sad",
+      "password": "asdasdasd",
+      "id": 4
+    }
+  ]
+}
