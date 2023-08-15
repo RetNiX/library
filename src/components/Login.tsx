@@ -3,13 +3,13 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { getUser } from "../services/usersService";
 import { Link, useNavigate } from "react-router-dom";
-import Register from "./Register";
+import { errorMsg, successMsg } from "../services/feedbackService";
 
 interface LoginProps {
-
+    setIsLoggedIn: Function;
 }
 
-const Login: FunctionComponent<LoginProps> = () => {
+const Login: FunctionComponent<LoginProps> = ({setIsLoggedIn}) => {
     let navigate = useNavigate();
     let formik = useFormik({
         initialValues: { email: "", password: "" },
@@ -20,10 +20,13 @@ const Login: FunctionComponent<LoginProps> = () => {
         onSubmit: (values) => {
             getUser(values).then((res) => {
                 if (res.data.length) {
-                    alert("You Logged in successfuly !");
+                    sessionStorage.setItem("userEmail", values.email);
+                    sessionStorage.setItem("isLoggedIn", "true");
+                    setIsLoggedIn(true);
+                    successMsg("You have logged in successfuly!");
                     navigate("/home");
                 }
-                else alert("Wrong Credentails. Try again !");
+                else errorMsg("Wrong credentails. Try again.");
             }
             ).catch((err) => console.log(err)
             );
@@ -31,9 +34,6 @@ const Login: FunctionComponent<LoginProps> = () => {
     });
     return (
         <>
-            <div className="container-fluid text-center">
-                <h1 className="display-4 py-5 bg-dark text-light"><b>Book Collection</b></h1>
-            </div>
             <h2 className="display-3 text-center mb-4">Login</h2>
             <hr className="m-auto w-25 mb-4" />
             <div className="container w-25">

@@ -1,14 +1,15 @@
 import { useFormik } from "formik";
 import { FunctionComponent } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { addUser, getUser } from "../services/usersService";
+import { addUser } from "../services/usersService";
 import * as yup from 'yup';
+import { successMsg } from "../services/feedbackService";
 
 interface RegisterProps {
-
+    setIsLoggedIn: Function;
 }
 
-const Register: FunctionComponent<RegisterProps> = () => {
+const Register: FunctionComponent<RegisterProps> = ({ setIsLoggedIn }) => {
     let navigate = useNavigate();
     let formik = useFormik({
         initialValues: { name: "", email: "", password: "" },
@@ -18,22 +19,18 @@ const Register: FunctionComponent<RegisterProps> = () => {
             name: yup.string().optional().min(2, "Name should be at least 2 characters long.")
         }),
         onSubmit: (values) => {
-            getUser(values).then((res) => {
-                if(res.data.length) {
-                    alert("This user already exits !");
-                } else {
-                    addUser(values);
-                    alert("You have Registered successfuly !");
-                    navigate("/home");
-                } 
-            }).catch((err) => console.log(err));
+            addUser(values).then((res) => {
+                navigate("/home");
+                successMsg("You have registered successfuly!");
+                sessionStorage.setItem("userEmail", values.email);
+                sessionStorage.setItem("isLoggedIn", "true");
+                setIsLoggedIn(true);
+            })
+                .catch((err) => console.log(err));
         }
     });
     return (
         <>
-            <div className="container-fluid text-center">
-                <h1 className="display-4 py-5 bg-dark text-light"><b>Book Collection</b></h1>
-            </div>
             <h2 className="display-3 text-center mb-4">Register</h2>
             <hr className="m-auto w-25 mb-4" />
             <div className="container w-25">
@@ -53,7 +50,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                         <label htmlFor="password">Password</label>
                         {formik.touched.password && formik.errors.password && <p className="text-danger text-center">{formik.errors.password}</p>}
                     </div>
-                    <button type="submit" className="btn btn-warning w-100 text-center" disabled={!formik.dirty && !formik.isValid}>Register</button>
+                    <button type="submit" className="btn btn-warning w-100 text-center" disabled={!formik.dirty || !formik.isValid}>Register</button>
                 </form>
                 <div className="container text-center mt-3">
                     <Link to={"/"}>Already have a user? Login Here.</Link>

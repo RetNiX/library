@@ -23,6 +23,75 @@
       "email": "asd@sad",
       "password": "asdasdasd",
       "id": 4
+    },
+    {
+      "name": "jgosn",
+      "email": "alsdk2@fgmao.com",
+      "password": "12345678",
+      "id": 5
+    },
+    {
+      "name": "david",
+      "email": "sa@gmail.com",
+      "password": "12345678",
+      "id": 6
+    },
+    {
+      "name": "asd",
+      "email": "asd@asd.com",
+      "password": "123512341",
+      "id": 7
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "name": "Harry Potter",
+      "author": "J.K. Rolling",
+      "genre": "Fantasy",
+      "price": 120
+    },
+    {
+      "id": 2,
+      "name": "13 Reasons Why",
+      "author": "H.P. Hating",
+      "genre": "Horror",
+      "price": 260
+    },
+    {
+      "id": 3,
+      "name": "Late Night",
+      "author": "b.L Takings",
+      "genre": "Drama",
+      "price": 380
+    },
+    {
+      "name": "asd",
+      "author": "asd",
+      "genre": "asd",
+      "price": "123",
+      "id": 4
+    },
+    {
+      "name": "asd",
+      "author": "dfhashr",
+      "genre": "gdfgg",
+      "price": "12312",
+      "id": 5
+    },
+    {
+      "name": "ghjg",
+      "author": "ghkdfd",
+      "genre": "df",
+      "price": "123",
+      "id": 6
+    },
+    {
+      "name": "hj",
+      "author": "hj",
+      "genre": "hj",
+      "price": 1231,
+      "id": 7
     }
   ]
 }
